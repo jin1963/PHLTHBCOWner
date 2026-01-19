@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>THBC Owner Panel • setPackage</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="brandBox">
+        <div class="brand">THBC Owner Panel</div>
+        <div class="sub">BSC Mainnet (56) • Owner Only • setPackage (+ optional setPoolParams)</div>
+      </div>
+
+      <div class="walletBox">
+        <button id="btnConnect" class="btn">Connect Owner Wallet</button>
+        <div class="walletLine">
+          <span id="walletStatus" class="mono muted">❌ Not connected</span>
+          <span id="netStatus" class="pill">Network: -</span>
+        </div>
+        <div id="ownerGate" class="gate muted small">-</div>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="cardTitle">Contract</div>
+
+      <div class="grid2">
+        <div class="kpi">
+          <div class="kpiLabel">Contract</div>
+          <div id="contractAddr" class="kpiValue mono">-</div>
+          <div class="muted small">THBC_MultiPool_AutoStake</div>
+        </div>
+        <div class="kpi">
+          <div class="kpiLabel">PoolId</div>
+          <div id="poolIdText" class="kpiValue mono">0</div>
+          <div class="muted small">Fix ที่ 0 (poolCount=1)</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row">
+        <button id="btnScan" class="btn" disabled>Scan Packages (0–9)</button>
+        <button id="btnReloadOwner" class="btn" disabled>Reload Owner()</button>
+      </div>
+
+      <div class="msgBox">
+        <div id="msg" class="msg muted">กด Connect Owner Wallet เพื่อเริ่มใช้งาน</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="cardTitle">setPackage</div>
+
+      <div class="grid2">
+        <div>
+          <div class="label">packageId (0–9)</div>
+          <input id="packageId" class="input mono" type="number" min="0" max="9" value="0" />
+          <div class="muted small">แนะนำใช้ 0–9 ให้ตรงกับ dropdown ใน User DApp</div>
+        </div>
+
+        <div>
+          <div class="label">active</div>
+          <label class="checkline">
+            <input id="active" type="checkbox" checked />
+            <span>Enable this package</span>
+          </label>
+          <div class="muted small">ปิดขายได้โดยติ๊กออก (active=false)</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="grid2">
+        <div>
+          <div class="label">THBC in (human)</div>
+          <input id="thbcInHuman" class="input mono" type="text" value="35" />
+          <div class="muted small">ใส่ “35” ได้เลย ระบบแปลงตาม decimals</div>
+        </div>
+
+        <div>
+          <div class="label">PHL out (human)</div>
+          <input id="phlOutHuman" class="input mono" type="text" value="35" />
+          <div class="muted small">ใส่ “35” ได้เลย ระบบแปลงตาม decimals</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row">
+        <button id="btnReadPkg" class="btn" disabled>Read getPackage</button>
+        <button id="btnSetPkg" class="btn btnGold" disabled>Send setPackage</button>
+      </div>
+
+      <div class="box">
+        <div class="label">Current Package (on-chain)</div>
+        <pre id="pkgPreview" class="pre">-</pre>
+      </div>
+
+      <div class="muted small" id="tokenMeta">-</div>
+    </section>
+
+    <section class="card" id="advancedCard">
+      <div class="cardTitle">Advanced</div>
+      <label class="checkline">
+        <input id="toggleAdvanced" type="checkbox" />
+        <span>Show setPoolParams (optional)</span>
+      </label>
+
+      <div id="advancedBody" class="hidden">
+        <div class="divider"></div>
+
+        <div class="grid2">
+          <div>
+            <div class="label">apyBP (basis points)</div>
+            <input id="apyBP" class="input mono" type="number" value="3000" />
+            <div class="muted small">30% = 3000</div>
+          </div>
+
+          <div>
+            <div class="label">lockSec (seconds)</div>
+            <input id="lockSec" class="input mono" type="number" value="31536000" />
+            <div class="muted small">365 วัน = 31536000</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <label class="checkline">
+          <input id="poolEnabled" type="checkbox" checked />
+          <span>enabled</span>
+        </label>
+
+        <div class="row">
+          <button id="btnReadPool" class="btn" disabled>Read getPool</button>
+          <button id="btnSetPool" class="btn btnGreen" disabled>Send setPoolParams</button>
+        </div>
+
+        <div class="box">
+          <div class="label">Current Pool (on-chain)</div>
+          <pre id="poolPreview" class="pre">-</pre>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot muted small">
+      * Owner Panel นี้ “ไม่ควรแชร์ลิงก์” • แนะนำทำ repo แยกจาก User DApp • เปิดผ่าน Bitget/MetaMask DApp Browser
+    </footer>
+  </div>
+
+  <script type="module" src="owner.js"></script>
+</body>
+</html>
